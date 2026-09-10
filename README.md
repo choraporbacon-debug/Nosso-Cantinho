@@ -1,30 +1,19 @@
-# Nosso Cantinho V4 💗
+# Nosso Cantinho V5 💖
 
-V4 — revisão de estabilidade e experiência.
+Versão preparada para **GitHub Pages + Supabase**, com links públicos que funcionam em outros celulares.
 
-## O que foi corrigido
-- JavaScript refeito para inicialização mais segura.
-- Fluxo de 6 etapas.
-- Até 9 fotos com preview e remoção.
-- Puzzle 3×3 funcional.
-- Contador atualizado a cada segundo.
-- YouTube aceita youtu.be, youtube.com/watch, shorts, embed e live.
-- YouTube usa iframe privacy-enhanced dentro da página, em vez de tentar tocar URL do YouTube no elemento audio.
-- MP3 local e URL direta de áudio.
-- Player visual próprio.
-- Temas.
-- Galeria com visualização ampliada.
-- Página pública separada do editor na interface.
+## Configuração rápida
+1. Crie um projeto no Supabase.
+2. Em Authentication > Providers, habilite **Anonymous Sign-Ins**.
+3. Em Storage, crie um bucket público chamado `surpresas`.
+4. Abra o SQL Editor e execute `supabase.sql`.
+5. Copie `config.example.js` para `config.js` e coloque a URL e a chave publishable/anon do projeto.
+6. Envie todos os arquivos para um repositório público no GitHub.
+7. Ative GitHub Pages usando a branch `main` e a pasta `/root`.
 
-## Limitação importante
-Esta V4 ainda é um protótipo estático. O link gerado usa localStorage, então uma surpresa não é realmente publicada na internet para outro aparelho.
+A chave publishable/anon pode ficar no frontend; **nunca coloque uma service_role key no site**.
 
-Para o produto final funcionar como um site de compartilhamento real, o próximo passo é integrar Supabase:
-- banco para os dados da surpresa;
-- Storage para fotos e MP3;
-- UUID público para cada surpresa;
-- leitura pública somente da surpresa;
-- editor separado e protegido;
-- RLS e proteção contra spam.
+O editor salva rascunhos localmente e o botão Compartilhar cria um registro remoto com UUID, envia arquivos ao Storage e gera um link público. O destinatário vê somente a surpresa. O botão Editar só aparece para a sessão anônima que criou a surpresa.
 
-Não coloque uma service_role key no frontend.
+## Observação
+Este pacote mantém o visual e as funções da V4 como base. O módulo remoto está preparado para ser conectado ao fluxo de compartilhamento do `script.js`; se você quiser usar o backend imediatamente, substitua o `script.js` pela versão integrada fornecida no projeto final.
