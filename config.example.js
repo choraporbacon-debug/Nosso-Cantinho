@@ -1,0 +1,2 @@
+window.NC_SUPABASE_URL = "https://SEU-PROJETO.supabase.co";
+window.NC_SUPABASE_KEY = "SUA-CHAVE-PUBLISHABLE-OU-ANON";
