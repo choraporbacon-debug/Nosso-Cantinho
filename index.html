@@ -1,117 +1,71 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-  <meta name="theme-color" content="#160b16">
-  <title>Nosso Cantinho 💕</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="config.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#10080f"><title>Nosso Cantinho — Uma história só nossa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css"><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="config.js"></script>
 </head>
 <body>
-  <div class="hearts" aria-hidden="true"></div>
-  <header class="topbar">
-    <a class="brand" href="./">Nosso <span>Cantinho</span> <b>♥</b></a>
-    <button id="homeBtn" class="ghost hidden" type="button">Início</button>
-  </header>
+<div id="hearts"></div>
+<header><a href="./" class="logo">Nosso <i>Cantinho</i> <b>♥</b></a><button id="backHome" class="small hidden">Início</button></header>
+<main>
+<section id="home" class="page">
+<div class="hero"><div class="pill">feito para dois</div><h1>Uma história.<br><em>Um cantinho.</em><br>Nosso.</h1>
+<p>Crie uma experiência romântica com fotos, carta, música e momentos que só vocês entendem.</p>
+<button id="begin" class="cta">✨ Criar nossa história</button><span class="under">privado na criação • link único para compartilhar</span></div>
+</section>
 
-  <main>
-    <section id="landing" class="screen">
-      <div class="hero">
-        <div class="eyebrow">um lugar só nosso</div>
-        <h1>Nosso Cantinho</h1>
-        <p>Transforme suas memórias em uma surpresa feita com amor.</p>
-        <button id="startBtn" class="primary" type="button">✨ COMEÇAR A PREPARAR</button>
-        <div class="mini">fotos • música • quebra-cabeça • nosso tempo juntos</div>
-      </div>
-    </section>
+<section id="builder" class="page hidden">
+<div class="builderTop"><div><div class="kicker">NOSSO CANTINHO</div><h2>Vamos criar a surpresa.</h2></div><div id="stepLabel">1 de 7</div></div>
+<div class="bar"><span id="bar"></span></div>
+<div id="steps"></div>
+<form id="form" autocomplete="off">
+<article class="panel step" data-i="0"><div class="stepNo">01</div><h3>Começa por vocês.</h3>
+<div class="two"><label>Seu nome<input id="yourName" maxlength="70" placeholder="Seu nome"></label><label>Nome do amor<input id="partnerName" maxlength="70" placeholder="Nome dela/dele"></label></div>
+<label>Apelido especial<input id="nickname" maxlength="60" placeholder="Meu amor, vida, neném..."></label>
+<label>Quando começou? <input id="startDate" type="datetime-local"></label></article>
 
-    <section id="editor" class="screen hidden">
-      <div class="editorHead">
-        <div><span class="eyebrow">criador</span><h2>Vamos criar algo inesquecível.</h2></div>
-        <div class="progress"><i id="progressBar"></i></div>
-      </div>
-      <div class="steps" id="steps"></div>
+<article class="panel step hidden" data-i="1"><div class="stepNo">02</div><h3>Escreva uma carta.</h3>
+<label>Título<input id="messageTitle" maxlength="120" placeholder="Para o amor da minha vida"></label>
+<label>Sua mensagem<textarea id="message" maxlength="3000" rows="9" placeholder="Escreva sem pressa..."></textarea></label><div class="counter"><span id="count">0</span>/3000</div>
+<label>Assinatura<input id="signature" maxlength="100" placeholder="Com todo meu amor..."></label></article>
 
-      <form id="creatorForm" novalidate>
-        <article class="card step" data-step="0">
-          <span class="num">01</span><h3>Quem é o casal?</h3>
-          <div class="grid2">
-            <label>Seu nome<input id="yourName" maxlength="60" required placeholder="Ex.: João"></label>
-            <label>Nome dela/dele<input id="partnerName" maxlength="60" required placeholder="Ex.: Maria"></label>
-          </div>
-          <label>Apelido especial<input id="nickname" maxlength="50" placeholder="Ex.: meu amor, neném..."></label>
-          <label>Data em que começaram<input id="startDate" type="datetime-local" required></label>
-        </article>
+<article class="panel step hidden" data-i="2"><div class="stepNo">03</div><h3>Escolha nossas memórias.</h3>
+<p class="sub">Até 12 fotos. Arraste não é necessário: escolha da galeria e pronto.</p>
+<label class="drop">📷 Adicionar fotos<input id="photos" type="file" accept="image/*" multiple></label><div id="photoGrid" class="grid"></div></article>
 
-        <article class="card step hidden" data-step="1">
-          <span class="num">02</span><h3>Escreva o que sente</h3>
-          <label>Título<input id="messageTitle" maxlength="100" placeholder="Para o amor da minha vida"></label>
-          <label>Mensagem<textarea id="message" maxlength="2500" rows="8" placeholder="Escreva sua mensagem..."></textarea></label>
-          <div class="counter"><span id="charCount">0</span>/2500</div>
-          <label>Assinatura<input id="signature" maxlength="100" placeholder="Com amor, ..."></label>
-        </article>
+<article class="panel step hidden" data-i="3"><div class="stepNo">04</div><h3>Uma foto para montar.</h3>
+<p class="sub">O puzzle será 3×3 e a imagem completa aparece quando terminar.</p>
+<label class="drop">🧩 Escolher foto do puzzle<input id="puzzle" type="file" accept="image/*"></label><div id="puzzlePrev"></div></article>
 
-        <article class="card step hidden" data-step="2">
-          <span class="num">03</span><h3>Nossas memórias</h3>
-          <p class="muted">Escolha até 9 fotos. Elas serão enviadas ao Storage quando você compartilhar.</p>
-          <label class="upload">📸 Adicionar fotos (máx. 9)<input id="photos" type="file" accept="image/*" multiple></label>
-          <div id="photoPreview" class="photoGrid"></div>
-        </article>
+<article class="panel step hidden" data-i="4"><div class="stepNo">05</div><h3>Escolha a nossa música.</h3>
+<p class="sub">A experiência de escolha lembra um player de streaming: capa, faixa, artista, barra e controles. Use áudio que você tem permissão para compartilhar ou o player oficial do YouTube.</p>
+<div class="musicCard">
+<div class="cover">♥</div><div class="track"><strong id="trackName">Nossa música</strong><span id="trackArtist">Escolha uma faixa</span><div class="fakeWave"></div></div>
+</div>
+<div class="musicTabs"><button type="button" class="musicTab active" data-tab="yt">YouTube</button><button type="button" class="musicTab" data-tab="file">MP3</button><button type="button" class="musicTab" data-tab="url">Áudio URL</button></div>
+<div id="music-yt" class="musicPane"><label>Link do YouTube<input id="youtube" placeholder="https://youtu.be/5Sf-x3LILtE"></label></div>
+<div id="music-file" class="musicPane hidden"><label class="drop">🎧 Escolher arquivo de áudio<input id="audio" type="file" accept="audio/*"></label></div>
+<div id="music-url" class="musicPane hidden"><label>URL direta de áudio<input id="audioUrl" type="url" placeholder="https://exemplo.com/musica.mp3"></label></div>
+<div class="two"><label>Nome da música<input id="song" maxlength="100" placeholder="Nossa música"></label><label>Artista<input id="artist" maxlength="100" placeholder="Artista"></label></div>
+<div id="musicPreview"></div></article>
 
-        <article class="card step hidden" data-step="3">
-          <span class="num">04</span><h3>Nosso quebra-cabeça</h3>
-          <p class="muted">Escolha uma foto especial. A surpresa terá um puzzle 3×3.</p>
-          <label class="upload">🧩 Escolher foto do quebra-cabeça<input id="puzzlePhoto" type="file" accept="image/*"></label>
-          <div id="puzzlePreview" class="puzzlePreview"></div>
-          <div class="tip">Na página dela: toque em duas peças para trocar. Ao completar, a foto aparece inteira. 💗</div>
-        </article>
+<article class="panel step hidden" data-i="5"><div class="stepNo">06</div><h3>Escolha o clima.</h3>
+<div class="themes"><button type="button" data-theme="wine" class="theme active">🍷 Vinho</button><button type="button" data-theme="rose" class="theme">🌹 Rosa</button><button type="button" data-theme="violet" class="theme">💜 Violeta</button><button type="button" data-theme="midnight" class="theme">🌙 Midnight</button><button type="button" data-theme="gold" class="theme">✨ Dourado</button></div>
+<label>Mensagem da última surpresa<textarea id="surprise" maxlength="1200" rows="6" placeholder="E quando você achar que acabou..."></textarea></label></article>
 
-        <article class="card step hidden" data-step="4">
-          <span class="num">05</span><h3>A nossa música</h3>
-          <p class="muted">Use um MP3 ou um link do YouTube. Links do YouTube usam o player incorporado.</p>
-          <div class="musicForm">
-            <label>Nome da música<input id="songName" maxlength="100" placeholder="Nossa música"></label>
-            <label>Artista<input id="artist" maxlength="100" placeholder="Artista"></label>
-            <label class="upload">🎧 Escolher MP3<input id="audioFile" type="file" accept="audio/mpeg,audio/mp3,audio/*"></label>
-            <label>Link do YouTube<input id="youtubeUrl" type="url" placeholder="https://youtu.be/..."></label>
-            <label>Ou URL direta de áudio<input id="audioUrl" type="url" placeholder="https://site.com/musica.mp3"></label>
-          </div>
-          <div id="musicTest" class="musicPlayer compact hidden"></div>
-        </article>
+<article class="panel step hidden" data-i="6"><div class="stepNo">07</div><h3>Está tudo pronto. 💌</h3><div id="review" class="review"></div>
+<div class="privacy"><b>☁️ Salvamento online</b><span>Ao publicar, fotos e áudio serão enviados para o Storage do seu Supabase e a surpresa receberá um link único.</span></div></article>
+<div class="actions"><button type="button" id="prev" class="secondary">← Voltar</button><button type="button" id="next" class="cta">Continuar →</button><button type="submit" id="publish" class="cta hidden">💖 Publicar surpresa</button></div>
+</form>
+</section>
 
-        <article class="card step hidden" data-step="5">
-          <span class="num">06</span><h3>Toques finais</h3>
-          <div class="themeRow">
-            <button type="button" class="theme active" data-theme="wine">🍷 Vinho</button>
-            <button type="button" class="theme" data-theme="rose">🌹 Rosa</button>
-            <button type="button" class="theme" data-theme="lilac">💜 Lilás</button>
-            <button type="button" class="theme" data-theme="night">🌙 Noite</button>
-            <button type="button" class="theme" data-theme="gold">✨ Dourado</button>
-          </div>
-          <label>Mensagem final da surpresa<textarea id="surpriseMessage" maxlength="1000" rows="5" placeholder="Tenho uma última coisa para te dizer..."></textarea></label>
-          <div class="summary" id="summary"></div>
-        </article>
+<section id="result" class="page hidden"><div class="result panel"><div class="pill">pronto para compartilhar</div><h2>Sua história ganhou um endereço. 💖</h2><p class="sub">Abra para conferir e envie o mesmo link para o seu amor.</p><input id="share" readonly><div class="actions center"><button id="copy" class="cta">🔗 Copiar link</button><button id="open" class="secondary">💗 Ver surpresa</button></div></div></section>
 
-        <div class="nav">
-          <button type="button" id="prevBtn" class="secondary">← Voltar</button>
-          <button type="button" id="nextBtn" class="primary">Continuar →</button>
-          <button type="submit" id="createBtn" class="primary hidden">💖 CRIAR MINHA SURPRESA</button>
-        </div>
-      </form>
-    </section>
-
-    <section id="viewer" class="screen hidden">
-      <div id="viewerContent"></div>
-    </section>
-
-    <div id="toast" class="toast" role="status" aria-live="polite"></div>
-  </main>
-
-  <script src="script.js"></script>
-</body>
-</html>
+<section id="viewer" class="page hidden"><div id="view"></div></section>
+</main>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body></html>
