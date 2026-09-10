@@ -1,19 +1,33 @@
-# Nosso Cantinho V5 💖
+# Nosso Cantinho V5 — GitHub + Supabase 💖
 
-Versão preparada para **GitHub Pages + Supabase**, com links públicos que funcionam em outros celulares.
+## Arquivos
+- `index.html` — página
+- `style.css` — visual
+- `script.js` — editor, compartilhamento e página pública
+- `config.example.js` — modelo da configuração
+- `supabase.sql` — banco + RLS + políticas do Storage
 
-## Configuração rápida
-1. Crie um projeto no Supabase.
-2. Em Authentication > Providers, habilite **Anonymous Sign-Ins**.
-3. Em Storage, crie um bucket público chamado `surpresas`.
-4. Abra o SQL Editor e execute `supabase.sql`.
-5. Copie `config.example.js` para `config.js` e coloque a URL e a chave publishable/anon do projeto.
-6. Envie todos os arquivos para um repositório público no GitHub.
-7. Ative GitHub Pages usando a branch `main` e a pasta `/root`.
+## Configuração no Supabase
+1. Authentication → Providers → habilite **Anonymous Sign-Ins**.
+2. Storage → crie um bucket chamado `surpresas`.
+3. Marque o bucket como **Public**.
+4. SQL Editor → cole e execute `supabase.sql`.
+5. Faça uma cópia de `config.example.js` chamada `config.js`.
+6. Em Project Settings → API, copie a URL do projeto e a chave **Publishable/anon** para `config.js`.
+7. NUNCA coloque a `service_role` no site.
 
-A chave publishable/anon pode ficar no frontend; **nunca coloque uma service_role key no site**.
+## GitHub Pages
+Envie TODOS os arquivos para a raiz do repositório:
+`index.html`, `style.css`, `script.js`, `config.js`, `supabase.sql`, etc.
 
-O editor salva rascunhos localmente e o botão Compartilhar cria um registro remoto com UUID, envia arquivos ao Storage e gera um link público. O destinatário vê somente a surpresa. O botão Editar só aparece para a sessão anônima que criou a surpresa.
+Depois:
+Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
 
-## Observação
-Este pacote mantém o visual e as funções da V4 como base. O módulo remoto está preparado para ser conectado ao fluxo de compartilhamento do `script.js`; se você quiser usar o backend imediatamente, substitua o `script.js` pela versão integrada fornecida no projeto final.
+## Como funciona
+O criador recebe uma sessão anônima do Supabase. Ao criar a surpresa, os arquivos são enviados para Storage e os dados são gravados na tabela `surpresas`. O site gera:
+`?surpresa=UUID`
+
+Esse link pode ser aberto em outro celular. A pessoa que recebe vê somente a página pública da surpresa.
+
+## Importante
+O `config.js` usa uma chave publishable/anon, que é apropriada para frontend quando as políticas RLS estão corretas. A segurança real depende das políticas do Supabase.
