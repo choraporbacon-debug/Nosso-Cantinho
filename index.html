@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#160b16">
+  <title>Nosso Cantinho 💕</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="hearts" aria-hidden="true"></div>
+<header class="topbar">
+  <div class="brand">Nosso <span>Cantinho</span> <b>♥</b></div>
+  <button id="homeBtn" class="ghost hidden">Início</button>
+</header>
+
+<main>
+<section id="landing" class="screen">
+  <div class="hero">
+    <div class="eyebrow">um lugar só nosso</div>
+    <h1>Nosso Cantinho</h1>
+    <p>Transforme suas memórias em uma surpresa feita com amor.</p>
+    <button id="startBtn" class="primary">✨ COMEÇAR A PREPARAR</button>
+    <div class="mini">fotos • música • quebra-cabeça • nosso tempo juntos</div>
+  </div>
+</section>
+
+<section id="editor" class="screen hidden">
+  <div class="editorHead">
+    <div><span class="eyebrow">criador</span><h2>Vamos criar algo inesquecível.</h2></div>
+    <div class="progress"><i id="progressBar"></i></div>
+  </div>
+  <div class="steps" id="steps"></div>
+
+  <form id="creatorForm" novalidate>
+    <article class="card step" data-step="0">
+      <span class="num">01</span><h3>Quem é o casal?</h3>
+      <div class="grid2">
+        <label>Seu nome<input id="yourName" maxlength="60" required placeholder="Ex.: João"></label>
+        <label>Nome dela/dele<input id="partnerName" maxlength="60" required placeholder="Ex.: Maria"></label>
+      </div>
+      <label>Apelido especial<input id="nickname" maxlength="50" placeholder="Ex.: meu amor, neném..."></label>
+      <label>Data em que começaram<input id="startDate" type="datetime-local" required></label>
+    </article>
+
+    <article class="card step hidden" data-step="1">
+      <span class="num">02</span><h3>Escreva o que sente</h3>
+      <label>Título<input id="messageTitle" maxlength="100" placeholder="Para o amor da minha vida"></label>
+      <label>Mensagem<textarea id="message" maxlength="2500" rows="8" placeholder="Escreva sua mensagem..."></textarea></label>
+      <div class="counter"><span id="charCount">0</span>/2500</div>
+      <label>Assinatura<input id="signature" maxlength="100" placeholder="Com amor, ..."></label>
+    </article>
+
+    <article class="card step hidden" data-step="2">
+      <span class="num">03</span><h3>Nossas memórias</h3>
+      <p class="muted">Escolha até 9 fotos. Elas ficam na galeria da surpresa.</p>
+      <label class="upload">📸 Adicionar fotos (máx. 9)<input id="photos" type="file" accept="image/*" multiple></label>
+      <div id="photoPreview" class="photoGrid"></div>
+    </article>
+
+    <article class="card step hidden" data-step="3">
+      <span class="num">04</span><h3>Nosso quebra-cabeça</h3>
+      <p class="muted">Escolha uma foto especial. A surpresa terá um puzzle 3×3 para ela montar.</p>
+      <label class="upload">🧩 Escolher foto do quebra-cabeça<input id="puzzlePhoto" type="file" accept="image/*"></label>
+      <div id="puzzlePreview" class="puzzlePreview"></div>
+      <div class="tip">Na página dela: toque em duas peças para trocar. Ao completar, a foto aparece inteira. 💗</div>
+    </article>
+
+    <article class="card step hidden" data-step="4">
+      <span class="num">05</span><h3>A nossa música</h3>
+      <p class="muted">Use um MP3 ou um link do YouTube. O YouTube será apresentado dentro de um player personalizado, sem jogar a página para o YouTube.</p>
+      <div class="musicForm">
+        <label>Nome da música<input id="songName" maxlength="100" placeholder="Nossa música"></label>
+        <label>Artista<input id="artist" maxlength="100" placeholder="Artista"></label>
+        <label class="upload">🎧 Escolher MP3<input id="audioFile" type="file" accept="audio/mpeg,audio/mp3,audio/*"></label>
+        <label>Link do YouTube<input id="youtubeUrl" type="url" placeholder="https://youtu.be/..."></label>
+        <label>Ou URL direta de áudio<input id="audioUrl" type="url" placeholder="https://site.com/musica.mp3"></label>
+      </div>
+      <div id="musicTest" class="musicPlayer compact hidden"></div>
+    </article>
+
+    <article class="card step hidden" data-step="5">
+      <span class="num">06</span><h3>Toques finais</h3>
+      <div class="themeRow">
+        <button type="button" class="theme active" data-theme="wine">🍷 Vinho</button>
+        <button type="button" class="theme" data-theme="rose">🌹 Rosa</button>
+        <button type="button" class="theme" data-theme="lilac">💜 Lilás</button>
+        <button type="button" class="theme" data-theme="night">🌙 Noite</button>
+        <button type="button" class="theme" data-theme="gold">✨ Dourado</button>
+      </div>
+      <label>Mensagem final da surpresa<textarea id="surpriseMessage" maxlength="1000" rows="5" placeholder="Tenho uma última coisa para te dizer..."></textarea></label>
+      <div class="summary" id="summary"></div>
+    </article>
+
+    <div class="nav">
+      <button type="button" id="prevBtn" class="secondary">← Voltar</button>
+      <button type="button" id="nextBtn" class="primary">Continuar →</button>
+      <button type="submit" id="createBtn" class="primary hidden">💖 CRIAR MINHA SURPRESA</button>
+    </div>
+  </form>
+</section>
+
+<section id="viewer" class="screen hidden">
+  <div id="viewerContent"></div>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
