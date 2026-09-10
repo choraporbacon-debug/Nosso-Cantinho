@@ -1,33 +1,19 @@
-# Nosso Cantinho V5 — GitHub + Supabase 💖
+# Nosso Cantinho V6 💖
+Versão nova, criada do zero, com visual romântico premium e integração Supabase.
 
-## Arquivos
-- `index.html` — página
-- `style.css` — visual
-- `script.js` — editor, compartilhamento e página pública
-- `config.example.js` — modelo da configuração
-- `supabase.sql` — banco + RLS + políticas do Storage
+## Música
+A área de música tem três modos: YouTube (player oficial incorporado), MP3 enviado pelo criador e URL direta de áudio. O layout é inspirado em experiências modernas de streaming, mas não copia marcas ou interface proprietária.
 
-## Configuração no Supabase
-1. Authentication → Providers → habilite **Anonymous Sign-Ins**.
-2. Storage → crie um bucket chamado `surpresas`.
-3. Marque o bucket como **Public**.
-4. SQL Editor → cole e execute `supabase.sql`.
-5. Faça uma cópia de `config.example.js` chamada `config.js`.
-6. Em Project Settings → API, copie a URL do projeto e a chave **Publishable/anon** para `config.js`.
-7. NUNCA coloque a `service_role` no site.
+## Supabase
+1. Authentication > Providers > habilite Anonymous Sign-Ins.
+2. SQL Editor > execute `supabase.sql`.
+3. Storage > New bucket > `surpresas` > Public ON.
+4. Copie `config.example.js` para `config.js`.
+5. Em Project Settings > API, coloque a URL e a chave Publishable/anon no `config.js`.
+6. Nunca coloque service_role no frontend.
 
 ## GitHub Pages
-Envie TODOS os arquivos para a raiz do repositório:
-`index.html`, `style.css`, `script.js`, `config.js`, `supabase.sql`, etc.
+Envie index.html, style.css, app.js, config.js e .nojekyll. O `supabase.sql` pode ficar no repositório, mas não é executado pelo GitHub.
 
-Depois:
-Settings → Pages → Deploy from a branch → `main` → `/ (root)` → Save.
-
-## Como funciona
-O criador recebe uma sessão anônima do Supabase. Ao criar a surpresa, os arquivos são enviados para Storage e os dados são gravados na tabela `surpresas`. O site gera:
-`?surpresa=UUID`
-
-Esse link pode ser aberto em outro celular. A pessoa que recebe vê somente a página pública da surpresa.
-
-## Importante
-O `config.js` usa uma chave publishable/anon, que é apropriada para frontend quando as políticas RLS estão corretas. A segurança real depende das políticas do Supabase.
+## Fluxo
+Criador abre o site > cria a história > Publicar surpresa > arquivos são enviados ao Supabase > é gerado `?surpresa=UUID` > esse link funciona em outro dispositivo.
